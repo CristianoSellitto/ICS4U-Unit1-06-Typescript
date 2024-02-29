@@ -33,18 +33,30 @@ function findMedian(list) {
   return median
 }
 
-// Get array
+// Get array of numbers
 let fs = require('fs')
 let array = fs.readFileSync('file.txt').toString().split("\n")
 array.pop() // Remove blank space at the end
 array = array.map((str) => parseInt(str, 10)) // Convert string to int
 
-// Find mean and median
-console.log(`Current array: ${array}\n`)
-const mean = findMean(array)
-const median = findMedian(array)
-console.log(`The mean is ${mean}`)
-console.log(`The median is ${median}`)
+// Error check
+let errorPassed = true
+for (let counter = 0; counter < array.length; counter++) {
+  if (isNaN(array[counter]) == true) {
+    console.log('Array contains a NaN value.')
+    errorPassed = false
+    break
+  }
+}
+
+if (errorPassed == true) {
+  // Find mean and median
+  console.log(`Current array: ${array}\n`)
+  const mean = findMean(array)
+  const median = findMedian(array)
+  console.log(`The mean is ${mean}`)
+  console.log(`The median is ${median}`)
+}
 
 // Show the program as done
 console.log('\nDone.')
