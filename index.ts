@@ -8,6 +8,7 @@
 */
 
 import { createPrompt } from 'bun-promptx'
+import { readFileSync } from 'fs'
 
 // Finds the mean of an array of numbers
 function findMean(list) {
@@ -34,9 +35,7 @@ function findMedian(list) {
 }
 
 // Get array of numbers
-let fs = require('fs')
-let array = fs.readFileSync('file.txt').toString().split("\n")
-array.pop() // Remove blank space at the end
+let array = readFileSync(process.argv[2], 'utf8').toString().split("\n")
 array = array.map((str) => parseInt(str, 10)) // Convert string to int
 
 // Error check
